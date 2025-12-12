@@ -11,22 +11,12 @@
   --color-secondary: #f59e42;
   --color-accent: #10b981;
   --color-muted: #f3f4f6;
+  --color-warning: #fbbf24;
+  --color-error: #ef4444;
 
   /* Fuentes */
   --font-main: "Inter", Arial, sans-serif;
   --font-title: "Montserrat", Arial, sans-serif;
-
-  /* Espaciado base */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 2rem;
-  --space-lg: 4rem;
-
-  /* Breakpoints (referencia, usar Tailwind para clases) */
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
 }
 
 body {
@@ -34,11 +24,14 @@ body {
   color: var(--color-fg);
   font-family: var(--font-main);
 }
-
-/* Ejemplo de uso de variables en clases custom si lo necesitas */
-.title {
-  font-family: var(--font-title);
-  color: var(--color-primary);
+a {
+  color: var(--color-fg);
+  text-decoration: none;
 }
-
-/* Mobile first: todo el diseño parte de la base móvil y se adapta con clases Tailwind */
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

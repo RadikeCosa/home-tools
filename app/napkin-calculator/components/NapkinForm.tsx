@@ -129,14 +129,14 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
     <div className="flex gap-3">
       <button
         type="submit"
-        className="flex-1 py-2 rounded-lg font-semibold transition shadow bg-primary text-white"
+        className="flex-1 py-2 rounded-lg font-semibold transition shadow bg-primary text-fg "
       >
         Calculate
       </button>
       <button
         type="button"
         onClick={onClear}
-        className="px-6 py-2 rounded-lg font-semibold transition bg-muted text-fg"
+        className="px-6 py-2 rounded-lg font-semibold transition bg-bg text-fg"
       >
         Clear
       </button>

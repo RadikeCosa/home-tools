@@ -14,7 +14,6 @@ interface NapkinFormProps {
   onCalculate: () => void;
   onClear: () => void;
   error?: string | null;
-  error?: string;
 }
 
 const NapkinForm: React.FC<NapkinFormProps> = ({
@@ -30,7 +29,6 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
   setNapkinHeight,
   onCalculate,
   onClear,
-  error,
   error,
 }) => (
   <form
@@ -49,29 +47,9 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
         {error}
       </div>
     )}
-  <div className="space-y-4 mb-6">
-    {error && (
-      <div
-        className="rounded-lg p-4 border-2"
-        style={{
-          background: "var(--color-error)",
-          borderColor: "var(--color-error)",
-          color: "white",
-        }}
-        role="alert"
-      >
-        <strong>⚠️ Error: </strong>
-        {error}
-      </div>
-    )}
     <div>
       <label className="block text-sm font-medium mb-2 text-fg">
         Fabric price ($)
-      <label
-        className="block text-sm font-medium mb-2"
-        style={{ color: "var(--color-fg)" }}
-      >
-        Fabric price ($ per meter of length)
       </label>
       <input
         type="number"
@@ -82,18 +60,7 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
         onChange={(e) => setFabricPrice(e.target.value)}
         placeholder="E.g. 5000"
         className="w-full px-4 py-2 border border-muted text-fg bg-bg rounded-lg outline-none transition"
-        min="0"
-        step="0.01"
-        className="w-full px-4 py-2 border rounded-lg outline-none transition"
-        style={{
-          borderColor: "var(--color-muted)",
-          color: "var(--color-fg)",
-          background: "var(--color-bg)",
-        }}
       />
-      <p className="text-xs mt-1" style={{ color: "var(--color-secondary)" }}>
-        Price per meter of fabric length (width is fixed)
-      </p>
     </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
@@ -109,14 +76,6 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
           onChange={(e) => setFabricWidth(e.target.value)}
           placeholder="E.g. 150"
           className="w-full px-4 py-2 border border-muted text-fg bg-bg rounded-lg outline-none transition"
-          min="0"
-          step="0.1"
-          className="w-full px-4 py-2 border rounded-lg outline-none transition"
-          style={{
-            borderColor: "var(--color-muted)",
-            color: "var(--color-fg)",
-            background: "var(--color-bg)",
-          }}
         />
       </div>
       <div>
@@ -132,14 +91,6 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
           onChange={(e) => setFabricLength(e.target.value)}
           placeholder="E.g. 200"
           className="w-full px-4 py-2 border border-muted text-fg bg-bg rounded-lg outline-none transition"
-          min="0"
-          step="0.1"
-          className="w-full px-4 py-2 border rounded-lg outline-none transition"
-          style={{
-            borderColor: "var(--color-muted)",
-            color: "var(--color-fg)",
-            background: "var(--color-bg)",
-          }}
         />
       </div>
     </div>
@@ -157,14 +108,6 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
           onChange={(e) => setNapkinWidth(e.target.value)}
           placeholder="E.g. 40"
           className="w-full px-4 py-2 border border-muted text-fg bg-bg rounded-lg outline-none transition"
-          min="0"
-          step="0.1"
-          className="w-full px-4 py-2 border rounded-lg outline-none transition"
-          style={{
-            borderColor: "var(--color-muted)",
-            color: "var(--color-fg)",
-            background: "var(--color-bg)",
-          }}
         />
       </div>
       <div>
@@ -180,14 +123,6 @@ const NapkinForm: React.FC<NapkinFormProps> = ({
           onChange={(e) => setNapkinHeight(e.target.value)}
           placeholder="E.g. 45"
           className="w-full px-4 py-2 border border-muted text-fg bg-bg rounded-lg outline-none transition"
-          min="0"
-          step="0.1"
-          className="w-full px-4 py-2 border rounded-lg outline-none transition"
-          style={{
-            borderColor: "var(--color-muted)",
-            color: "var(--color-fg)",
-            background: "var(--color-bg)",
-          }}
         />
       </div>
     </div>

@@ -75,6 +75,7 @@ export default function NapkinCalculator() {
           onCalculate={calculate}
           onClear={clear}
           error={error}
+          error={error}
         />
         {result && <NapkinResults result={result} />}
       </div>

@@ -1,6 +1,7 @@
 import UtilityCard from "../components/UtilityCard";
+import type { Utility } from "../types/utility";
 
-const utilities = [
+const utilities: Utility[] = [
   {
     path: "/napkin-calculator",
     title: "Napkin Calculator",

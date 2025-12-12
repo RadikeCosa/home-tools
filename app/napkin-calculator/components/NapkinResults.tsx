@@ -14,85 +14,40 @@ interface NapkinResultsProps {
 }
 
 const NapkinResults: React.FC<NapkinResultsProps> = ({ result }) => (
-  <div
-    className="mt-8 rounded-xl p-6 border-2"
-    style={{
-      background: "var(--color-muted)",
-      borderColor: "var(--color-primary)",
-    }}
-  >
-    <h2
-      className="text-2xl font-bold mb-4 text-center"
-      style={{ color: "var(--color-primary)", fontFamily: "var(--font-title)" }}
-    >
+  <div className="mt-8 rounded-xl p-6 border-2 bg-muted border-primary">
+    <h2 className="text-2xl font-bold mb-4 text-center text-primary font-title">
       Results
     </h2>
     <div className="space-y-4">
-      <div
-        className="rounded-lg p-4 shadow-sm"
-        style={{ background: "var(--color-bg)" }}
-      >
-        <div className="text-sm mb-1" style={{ color: "var(--color-fg)" }}>
-          Total napkins
-        </div>
-        <div
-          className="text-3xl font-bold"
-          style={{ color: "var(--color-primary)" }}
-        >
+      <div className="rounded-lg p-4 shadow-sm bg-bg">
+        <div className="text-sm mb-1 text-fg">Total napkins</div>
+        <div className="text-3xl font-bold text-primary">
           {result.totalNapkins}
         </div>
-        <div
-          className="text-xs mt-1"
-          style={{ color: "var(--color-secondary)" }}
-        >
+        <div className="text-xs mt-1 text-secondary">
           ({result.napkinsPerRow} × {result.napkinsPerCol})
         </div>
         {result.orientation === "rotated" && (
-          <div
-            className="text-xs mt-2 font-medium"
-            style={{ color: "var(--color-warning)" }}
-          >
+          <div className="text-xs mt-2 font-medium text-warning">
             ⟳ Best result by rotating napkin 90°
           </div>
         )}
       </div>
-      <div
-        className="rounded-lg p-4 shadow-sm"
-        style={{ background: "var(--color-bg)" }}
-      >
-        <div className="text-sm mb-1" style={{ color: "var(--color-fg)" }}>
-          Cost per napkin
-        </div>
-        <div
-          className="text-3xl font-bold"
-          style={{ color: "var(--color-accent)" }}
-        >
+      <div className="rounded-lg p-4 shadow-sm bg-bg">
+        <div className="text-sm mb-1 text-fg">Cost per napkin</div>
+        <div className="text-3xl font-bold text-accent">
           ${result.costPerNapkin.toFixed(2)}
         </div>
       </div>
-      <div
-        className="rounded-lg p-4 shadow-sm"
-        style={{ background: "var(--color-bg)" }}
-      >
-        <div className="text-sm mb-1" style={{ color: "var(--color-fg)" }}>
-          Fabric utilization
-        </div>
-        <div
-          className="text-2xl font-bold"
-          style={{ color: "var(--color-primary)" }}
-        >
+      <div className="rounded-lg p-4 shadow-sm bg-bg">
+        <div className="text-sm mb-1 text-fg">Fabric utilization</div>
+        <div className="text-2xl font-bold text-primary">
           {result.utilization.toFixed(1)}%
         </div>
-        <div
-          className="w-full rounded-full h-2 mt-2"
-          style={{ background: "var(--color-muted)" }}
-        >
+        <div className="w-full rounded-full h-2 mt-2 bg-muted">
           <div
-            className="h-2 rounded-full transition-all duration-500"
-            style={{
-              width: `${result.utilization}%`,
-              background: "var(--color-primary)",
-            }}
+            className="h-2 rounded-full transition-all duration-500 bg-primary"
+            style={{ width: `${result.utilization}%` }}
           ></div>
         </div>
       </div>

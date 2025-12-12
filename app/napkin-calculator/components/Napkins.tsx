@@ -10,27 +10,38 @@ export default function NapkinCalculator() {
   const [napkinWidth, setNapkinWidth] = useState("");
   const [napkinHeight, setNapkinHeight] = useState("");
   const [result, setResult] = useState<NapkinResult | null>(null);
+  const [error, setError] = useState("");
 
   const calculate = () => {
+    setError("");
+    
     const price = parseFloat(fabricPrice);
     const width = parseFloat(fabricWidth);
     const length = parseFloat(fabricLength);
     const nWidth = parseFloat(napkinWidth);
     const nHeight = parseFloat(napkinHeight);
 
-    if (
-      !price ||
-      !width ||
-      !length ||
-      !nWidth ||
-      !nHeight ||
-      price <= 0 ||
-      width <= 0 ||
-      length <= 0 ||
-      nWidth <= 0 ||
-      nHeight <= 0
-    ) {
-      alert("Please enter valid values greater than 0");
+    // Check for NaN values
+    if (isNaN(price) || isNaN(width) || isNaN(length) || isNaN(nWidth) || isNaN(nHeight)) {
+      setError("Please fill in all fields with valid numbers");
+      return;
+    }
+
+    // Check for values <= 0
+    if (price <= 0 || width <= 0 || length <= 0 || nWidth <= 0 || nHeight <= 0) {
+      setError("All values must be greater than 0");
+      return;
+    }
+
+    // Check for unrealistic values
+    if (width > 10000 || length > 10000 || nWidth > 10000 || nHeight > 10000) {
+      setError("Dimensions seem too large. Please check your values (max 10000 cm)");
+      return;
+    }
+
+    // Check if napkin is too large for fabric in both orientations
+    if ((nWidth > width || nHeight > length) && (nHeight > width || nWidth > length)) {
+      setError("The napkin is too large to fit on this fabric in any orientation");
       return;
     }
 
@@ -57,7 +68,17 @@ export default function NapkinCalculator() {
       orientation = "rotated";
     }
 
-    const costPerNapkin = totalNapkins > 0 ? price / totalNapkins : 0;
+    // Check if no napkins fit
+    if (totalNapkins === 0) {
+      setError("No complete napkins can fit on this fabric. Try smaller napkin dimensions.");
+      return;
+    }
+
+    // Fix: price is per meter of length, calculate total fabric cost
+    const fabricLengthInMeters = length / 100; // convert cm to meters
+    const totalFabricCost = price * fabricLengthInMeters; // price per meter * meters of length
+    const costPerNapkin = totalFabricCost / totalNapkins;
+    
     const fabricArea = width * length;
     const usedArea = totalNapkins * (nWidth * nHeight);
     const utilization = (usedArea / fabricArea) * 100;
@@ -79,6 +100,7 @@ export default function NapkinCalculator() {
     setNapkinWidth("");
     setNapkinHeight("");
     setResult(null);
+    setError("");
   };
 
   return (
@@ -119,6 +141,7 @@ export default function NapkinCalculator() {
           setNapkinHeight={setNapkinHeight}
           onCalculate={calculate}
           onClear={clear}
+          error={error}
         />
         {result && <NapkinResults result={result} />}
       </div>
